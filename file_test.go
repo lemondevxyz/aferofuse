@@ -164,3 +164,5 @@ func TestFileClose(t *testing.T) {
 	fuseFile.Release()
 	is.Equal(file.close, true)
 }
+
+func TestEmptyTest(t *testing.T) {}
