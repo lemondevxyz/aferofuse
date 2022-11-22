@@ -66,6 +66,6 @@ func main() {
 
 ## what's left?
 - [x] Internal unit testing
-- [ ] GitHub actions code coverage
+- [x] GitHub actions code coverage
 - [x] ~~Testing through a stressor like `iozone`~~
-- [ ] Release `v0.1.0`
+- [x] Release `v0.1.0`
