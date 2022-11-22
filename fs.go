@@ -1,7 +1,6 @@
 package aferofuse
 
 import (
-	"fmt"
 	"os"
 	"time"
 
@@ -22,11 +21,7 @@ func (a *aferoFuseFs) String() string {
 
 func (a *aferoFuseFs) GetAttr(name string, context *fuse.Context) (*fuse.Attr, fuse.Status) {
 	stat, err := a.afs.Stat(name)
-	if err != nil {
-		return nil, fuse.ENOENT
-	}
-
-	return fuse.ToAttr(stat), fuse.OK
+	return fuse.ToAttr(stat), fuse.ToStatus(err)
 }
 
 func (a *aferoFuseFs) Chmod(name string, mode uint32, context *fuse.Context) fuse.Status {
@@ -99,7 +94,7 @@ func (a *aferoFuseFs) Open(name string, flags uint32, context *fuse.Context) (no
 }
 
 func (a *aferoFuseFs) Create(name string, flags uint32, mode uint32, context *fuse.Context) (nodefs.File, fuse.Status) {
-	file, err := a.afs.OpenFile(name, int(flags), 0755)
+	file, err := a.afs.OpenFile(name, int(flags), os.FileMode(mode))
 	if err != nil {
 		return nil, fuse.ToStatus(err)
 	}
@@ -128,18 +123,16 @@ func (a *aferoFuseFs) OpenDir(name string, context *fuse.Context) ([]fuse.DirEnt
 }
 
 func (a *aferoFuseFs) Symlink(oldname string, newname string, context *fuse.Context) fuse.Status {
-	linker, ok := a.afs.(afero.Symlinker)
+	linker, ok := a.afs.(afero.Linker)
 	if !ok {
 		return fuse.ENOSYS
 	}
-
-	fmt.Println(oldname, newname)
 
 	return fuse.ToStatus(linker.SymlinkIfPossible(oldname, newname))
 }
 
 func (a *aferoFuseFs) Readlink(name string, context *fuse.Context) (string, fuse.Status) {
-	linker, ok := a.afs.(afero.Symlinker)
+	linker, ok := a.afs.(afero.LinkReader)
 	if !ok {
 		return "", fuse.ENOSYS
 	}
