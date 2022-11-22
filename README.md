@@ -1,4 +1,5 @@
 # aferofuse
+![Coverage](https://img.shields.io/badge/Coverage-100.0%25-brightgreen)
 [![GoDocs](https://godocs.io/github.com/lemondevxyz/aferofuse?status.svg)](https://godocs.io/github.com/lemondevxyz/aferofuse)
 Have you ever thought: I really like X file system Go implementation but I sure wish I could expose it to the whole operating system. Well, you are in luck!
 
