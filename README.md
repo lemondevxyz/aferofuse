@@ -1,4 +1,5 @@
 # aferofuse
+[![GoDocs](https://godocs.io/github.com/lemondevxyz/aferofuse?status.svg)](https://godocs.io/github.com/lemondevxyz/aferofuse)
 Have you ever thought: I really like X file system Go implementation but I sure wish I could expose it to the whole operating system. Well, you are in luck!
 
 This is exactly what `aferofuse` is. Taken from the two libraries: afero and fuse - `aferofuse` aims to expose internal Go abstract filesystems to the linux operating system by using the `fuse` library.
