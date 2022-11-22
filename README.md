@@ -63,7 +63,7 @@ func main() {
 ```
 
 ## what's left?
-- [ ] Internal unit testing
+- [x] Internal unit testing
 - [ ] GitHub actions code coverage
 - [ ] Testing through a stressor like `iozone`
 - [ ] Release `v0.1.0`
